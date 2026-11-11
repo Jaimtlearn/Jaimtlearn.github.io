@@ -7,6 +7,8 @@
 <meta name="description" content="Jaimit Patel, DevOps engineer in Ahmedabad. CI/CD, Terraform, Kubernetes and on-prem platforms across AWS, Azure and GCP.">
 <meta name="theme-color" content="#0f0f0f">
 <meta property="og:title" content="Jaimit Patel · DevOps Engineer">
+<link rel="canonical" href="https://jaimit.is-a.dev/">
+<meta property="og:url" content="https://jaimit.is-a.dev/">
 <meta property="og:description" content="Pipelines, platforms and 99.9% uptime.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,6 +152,60 @@ body.loaded .fade-up{opacity:1;transform:none}
 .tool:hover{background:var(--graphite-3);border-color:var(--lime)}
 .tool i{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center}
 .tool img{width:20px;height:20px;object-fit:contain}
+
+/* ---------- about ---------- */
+#about{padding:clamp(100px,14vh,160px) 0;background:#141414;border-top:1px solid var(--line-d)}
+.about{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(32px,5vw,80px);align-items:start}
+.about__story p{color:#cfcfca;font-size:18px;max-width:62ch;margin-top:20px}
+.about__story .lead{font-size:clamp(28px,3vw,42px);line-height:1.15;letter-spacing:-.03em;color:var(--white);margin-top:0;font-weight:500}
+.about__story .lead .hl{display:inline-block;line-height:1;padding:.02em .1em .08em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.facts span{font:13px var(--mono);padding:8px 13px;border-radius:999px;border:1px solid var(--line-d);color:#d6d6d2}
+.facts b{font-weight:500;color:var(--lime)}
+.now{background:var(--graphite);border:1px solid var(--line-d);border-radius:20px;padding:24px;position:sticky;top:100px}
+.now__top{display:flex;justify-content:space-between;color:var(--mute-d);margin-bottom:10px}
+.blip{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--lime);margin-right:8px;animation:pulse 1.6s infinite}
+.now dl{margin:0 0 22px}
+.now dl>div{padding:14px 0;border-bottom:1px solid var(--line-d)}
+.now dt{font:12px var(--mono);color:var(--mute-d);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.now dd{margin:0;font-size:16px;line-height:1.45}
+.now dd a{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+.principles{margin-top:clamp(64px,9vw,110px)}
+.principles h3{color:var(--mute-d);font-weight:400;margin-bottom:18px;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.principles ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.principles li{position:relative;padding:26px 22px;border-radius:18px;background:var(--graphite);border:1px solid var(--line-d);min-height:230px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .3s,transform .4s var(--ease),background .3s;outline:0}
+.principles li::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.principles li:hover,.principles li:focus{border-color:rgba(218,250,156,.4);transform:translateY(-4px);background:#1f2219}
+.principles li:hover::after,.principles li:focus::after{transform:scaleX(1)}
+.pn{font:13px var(--mono);color:var(--lime)}
+.principles b{display:block;font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.2;margin:56px 0 10px}
+.principles p{color:var(--mute-d);font-size:15px}
+@media (max-width:1023px){.about{grid-template-columns:1fr}.now{position:relative;top:0}.principles ol{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.principles ol{grid-template-columns:1fr}.principles li{min-height:0}.principles b{margin-top:22px}}
+
+/* ---------- direction ---------- */
+#vision{padding:clamp(100px,14vh,160px) 0;background:var(--paper)}
+.north{max-width:980px}
+.north .mono{color:var(--mute-l);text-transform:uppercase;letter-spacing:.1em}
+.north>p:not(.sub){font-size:clamp(34px,4.6vw,68px);font-weight:500;letter-spacing:-.04em;line-height:1.05;margin:16px 0 22px}
+.north .hl{display:inline;line-height:1.25}
+.road{list-style:none;margin:clamp(56px,8vw,96px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.road::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--paper-2);border-radius:3px}
+.road::after{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--black);border-radius:3px;transition:width 1.8s var(--ease) .3s}
+.road.in::after{width:37.5%}
+.road li{padding:30px 20px 24px 0;position:relative;transition:transform .4s var(--ease)}
+.road li::before{content:"";position:absolute;left:0;top:-6px;width:15px;height:15px;border-radius:50%;background:var(--paper);border:2px solid var(--mute-l);z-index:1}
+.road li.done::before{background:var(--black);border-color:var(--black)}
+.road li.cur::before{background:var(--lime-2);border-color:var(--black);animation:pulse2 1.6s infinite}
+.road li.star::before{background:var(--lime);border-color:var(--lime-2)}
+@keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(15,15,15,.35)}100%{box-shadow:0 0 0 12px rgba(15,15,15,0)}}
+.road li:hover{transform:translateY(-4px)}
+.road .st{font:12px var(--mono);color:var(--mute-l);text-transform:uppercase;letter-spacing:.08em}
+.road li.cur .st{color:var(--ink);background:var(--lime);padding:2px 8px;border-radius:999px}
+.road b{display:block;font-size:26px;font-weight:500;letter-spacing:-.03em;margin:12px 0 10px}
+.road p{color:var(--mute-l);font-size:15.5px;max-width:30ch}
+@media (max-width:900px){.road{grid-template-columns:1fr 1fr;row-gap:28px}.road::before,.road::after{display:none}.road li{padding-top:24px;border-top:3px solid var(--paper-2)}.road li.done,.road li.cur{border-top-color:var(--black)}}
+@media (max-width:560px){.road{grid-template-columns:1fr}}
 
 /* ---------- pipeline (scroll pinned) ---------- */
 #pipeline{height:360vh}
@@ -372,6 +428,31 @@ body.loaded .fade-up{opacity:1;transform:none}
 .toast.on{transform:translate(-50%,0);visibility:visible}
 @media (max-width:900px){.contact{grid-template-columns:1fr}}
 
+/* ---------- tmux status bar ---------- */
+.tmux{position:fixed;left:0;right:0;bottom:0;z-index:150;height:30px;display:flex;align-items:stretch;font:12px/30px var(--mono);background:rgba(15,15,15,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line-d);color:var(--mute-d);transform:translateY(100%);transition:transform .6s var(--ease)}
+body.loaded .tmux{transform:none}
+.tmux>*{padding:0 12px;white-space:nowrap}
+.tm-mode{background:var(--lime);color:var(--black);font-weight:500;letter-spacing:.06em}
+.tm-mode.ins{background:var(--amber)}
+.tm-file{color:var(--white);background:var(--graphite-3)}
+.tm-sp{flex:1}
+.tm-bar{display:flex;align-items:center;gap:8px}
+.tm-bar i{display:block;width:90px;height:4px;border-radius:4px;background:var(--graphite-3);overflow:hidden}
+.tm-bar i b{display:block;height:100%;width:0;background:var(--lime)}
+.tm-key{color:var(--white);border-left:1px solid var(--line-d)}
+.tm-key:hover{color:var(--lime)}
+@media (max-width:900px){.tmux{display:none}}
+@media (min-width:901px){.foot{padding-bottom:54px}.toast{bottom:48px}}
+/* ---------- word reveal ---------- */
+.wr .wd{opacity:.22;transition:opacity .25s linear}
+.wr .wd.on{opacity:1}
+/* ---------- shortcuts ---------- */
+.keys{position:fixed;inset:0;z-index:9600;display:none;place-items:center;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.keys.on{display:grid;animation:in .25s var(--ease)}
+.keys__box{width:min(520px,calc(100% - 32px));background:var(--graphite);border:1px solid var(--line-d);border-radius:18px;padding:24px 26px;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.keys__box h3{font-size:20px;margin-bottom:14px}
+.keys__box dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center;font-size:15px;color:#d6d6d2}
+.keys__box dt{display:flex;gap:4px}
 /* ---------- command palette ---------- */
 .cmdk{position:fixed;inset:0;z-index:9600;display:none;place-items:start center;padding-top:14vh;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .cmdk.on{display:grid;animation:in .25s var(--ease)}
@@ -404,6 +485,7 @@ body.loaded .fade-up{opacity:1;transform:none}
   <div class="nav__in">
     <a class="logo" href="#top"><i>JP</i>Jaimit Patel</a>
     <nav class="links" aria-label="Sections">
+      <a class="l" href="#about">About</a>
       <a class="l" href="#pipeline">Pipelines</a>
       <a class="l" href="#infra">Platform</a>
       <a class="l" href="#skills">Stack</a>
@@ -439,7 +521,7 @@ body.loaded .fade-up{opacity:1;transform:none}
         <input id="tin" spellcheck="false" placeholder="type a command, try help" aria-label="Terminal command">
       </form>
       <div class="chips" id="chips">
-        <button class="chip">help</button><button class="chip">deploy</button><button class="chip">kubectl get pods</button><button class="chip">terraform plan</button><button class="chip">sudo hire jaimit</button>
+        <button class="chip">help</button><button class="chip">now</button><button class="chip">deploy</button><button class="chip">kubectl get pods</button><button class="chip">terraform plan</button><button class="chip">sudo hire jaimit</button>
       </div>
     </div>
   </div>
@@ -458,13 +540,52 @@ body.loaded .fade-up{opacity:1;transform:none}
   <div class="marquee__track" id="mq"></div>
 </div>
 
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div><span class="eyebrow">01 · About</span><h2 data-scramble>Hi, I'm Jaimit. I make infrastructure boring.</h2></div>
+      <span class="sec-num">the good kind</span>
+    </div>
+    <div class="about">
+      <div class="about__story" data-reveal>
+        <p class="lead nowr">Deploys nobody worries about. Failovers nobody notices. Alerts that fire <span class="hl">before</span> users do.</p>
+        <p>I started in 2023 as a junior DevOps engineer on AWS while finishing my B.Tech in Computer Science. Since then I've run Kubernetes across three clouds, cut deployment time by about 40% with standardised pipelines, and now I'm building an on-prem data centre from the racks up: firewall, VLANs, Proxmox, HA PostgreSQL and end-to-end mTLS.</p>
+        <p>What keeps me in this work is the moment a fragile, manual process becomes a button anyone on the team can press safely. I like systems that explain themselves: everything in code, everything monitored, and no secret ever committed to git.</p>
+        <div class="facts">
+          <span>📍 Ahmedabad, India</span><span>🕒 <b class="live-time">--:--</b> IST</span><span>🗣 English · Hindi</span><span>🎓 B.Tech CSE · 2024</span>
+        </div>
+      </div>
+      <aside class="now" data-reveal>
+        <div class="now__top"><span class="mono"><i class="blip"></i>/now</span><span class="mono">updated Nov 2026</span></div>
+        <dl>
+          <div><dt>Working on</dt><dd>An on-prem platform at Inexture Solutions: Proxmox, Patroni, OpenBao, Grafana</dd></div>
+          <div><dt>Building</dt><dd><a href="https://github.com/Jaimtlearn/KeyStone" target="_blank" rel="noopener">Keystone ↗</a>, an SSH and secrets manager in Rust and Tauri</dd></div>
+          <div><dt>Studying for</dt><dd>CKA and AWS Certified DevOps Engineer, Professional</dd></div>
+          <div><dt>Looking for</dt><dd>A DevOps, Platform or SRE role on a team that treats infrastructure as a product</dd></div>
+        </dl>
+        <a class="btn magnet" href="#contact">Talk to me <span class="arr">→</span></a>
+      </aside>
+    </div>
+    <div class="principles" data-reveal>
+      <h3 class="mono">How I work</h3>
+      <ol>
+        <li tabindex="0"><span class="pn">01</span><b>Automate the second time.</b><p>Doing a task once teaches me the steps. Doing it twice means it becomes a pipeline, a Terraform module or a script.</p></li>
+        <li tabindex="0"><span class="pn">02</span><b>Not monitored, not in production.</b><p>Every service ships with metrics, logs and an alert that someone will actually read.</p></li>
+        <li tabindex="0"><span class="pn">03</span><b>Secure by default.</b><p>mTLS between services, secrets from a vault, least-privilege RBAC. Never a password in a repo.</p></li>
+        <li tabindex="0"><span class="pn">04</span><b>Design for 3 a.m.</b><p>Failover, backups and runbooks are part of the feature, and tested before anyone needs them.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PIPELINE (pinned) ============ -->
 <section id="pipeline" class="light">
   <div class="pin">
     <div class="wrap">
       <div class="pipe-grid">
         <div>
-          <span class="eyebrow">01 · CI/CD</span>
+          <span class="eyebrow">02 · CI/CD</span>
           <h2 data-scramble>Commit to production, <span class="hl">40% faster.</span></h2>
           <p class="sub">Jenkins, GitHub Actions and Bitbucket pipelines with Trivy scans and Argo CD GitOps. Scroll to run one.</p>
           <ol class="stages" id="stages">
@@ -491,7 +612,7 @@ body.loaded .fade-up{opacity:1;transform:none}
 <section id="infra">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div><span class="eyebrow">02 · Platform</span><h2 data-scramble>A data centre, from the racks up.</h2></div>
+      <div><span class="eyebrow">03 · Platform</span><h2 data-scramble>A data centre, from the racks up.</h2></div>
       <p class="sub" style="max-width:36ch">Click any node. Then break the database and watch Patroni recover.</p>
     </div>
     <div class="infra" data-reveal>
@@ -518,7 +639,7 @@ body.loaded .fade-up{opacity:1;transform:none}
 <section id="skills" class="light">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div><span class="eyebrow">03 · Stack</span><h2 data-scramble>The tools I run in production.</h2></div>
+      <div><span class="eyebrow">04 · Stack</span><h2 data-scramble>The tools I run in production.</h2></div>
       <span class="sec-num" id="scount">30 tools</span>
     </div>
     <div class="tabs" id="tabs" data-reveal role="tablist">
@@ -539,7 +660,7 @@ body.loaded .fade-up{opacity:1;transform:none}
 <section id="impact">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div><span class="eyebrow">04 · Impact</span><h2>Numbers from the job, not the brochure.</h2></div>
+      <div><span class="eyebrow">05 · Impact</span><h2>Numbers from the job, not the brochure.</h2></div>
     </div>
     <div class="imp" data-reveal>
       <div><b data-count="40" data-suf="%">0</b><p>faster deployments after standardising pipelines</p></div>
@@ -560,7 +681,7 @@ body.loaded .fade-up{opacity:1;transform:none}
 <section id="experience">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div><span class="eyebrow">05 · Experience</span><h2 data-scramble>git log --career</h2></div>
+      <div><span class="eyebrow">06 · Experience</span><h2 data-scramble>git log --career</h2></div>
       <span class="sec-num">since 2023</span>
     </div>
     <ol class="log-list" id="loglist">
@@ -634,7 +755,7 @@ body.loaded .fade-up{opacity:1;transform:none}
 <section id="projects" class="light">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div><span class="eyebrow">06 · Projects</span><h2 data-scramble>Built after hours.</h2></div>
+      <div><span class="eyebrow">07 · Projects</span><h2 data-scramble>Built after hours.</h2></div>
       <span class="sec-num">3 repositories</span>
     </div>
     <div class="projs">
@@ -668,13 +789,34 @@ body.loaded .fade-up{opacity:1;transform:none}
   </div>
 </section>
 
+<!-- ============ DIRECTION ============ -->
+<section id="vision" class="light">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div><span class="eyebrow">08 · Direction</span><h2 data-scramble>Where I'm headed.</h2></div>
+      <span class="sec-num">roadmap.yaml</span>
+    </div>
+    <div class="north" data-reveal>
+      <span class="mono">north star</span>
+      <p>Platforms that developers <span class="hl">never have to think about.</span></p>
+      <p class="sub">I want to build internal platforms where any engineer can ship to production safely, in minutes, without waiting on ops or reading a wiki first.</p>
+    </div>
+    <ol class="road" id="road" data-reveal>
+      <li class="done"><span class="st">✓ shipped</span><b>2023 – 2026</b><p>Pipelines, Terraform and Kubernetes across AWS, Azure and GCP, at 99.9% uptime.</p></li>
+      <li class="cur"><span class="st">● in progress</span><b>Now</b><p>An on-prem data centre at work, Keystone after hours, and CKA plus AWS DevOps Pro.</p></li>
+      <li><span class="st">○ next</span><b>Next role</b><p>Platform or SRE work: golden paths, self-service environments, SLOs that mean something.</p></li>
+      <li class="star"><span class="st">★ goal</span><b>Long term</b><p>Lead a platform team, and grow Keystone into open-source tooling other engineers rely on.</p></li>
+    </ol>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section id="contact">
   <div class="big-mq" aria-hidden="true"><div>Let's build <em>●</em> <span>something reliable</span> <em>●</em> Let's build <em>●</em> <span>something reliable</span> <em>●</em>&nbsp;</div></div>
   <div class="wrap">
     <div class="contact">
       <div data-reveal>
-        <span class="eyebrow">07 · Contact</span>
+        <span class="eyebrow">09 · Contact</span>
         <p class="sub" style="margin:22px 0 30px">Hiring for DevOps, platform or SRE? I reply within a day.</p>
         <button class="mail" id="copyMail" data-cursor="Copy">jaimitpatel.1432@gmail.com <span class="cp">copy</span></button>
         <div class="actions">
@@ -698,6 +840,25 @@ body.loaded .fade-up{opacity:1;transform:none}
   <div class="cmdk__box"><input id="kin" placeholder="Jump to a section or run an action…" aria-label="Search commands"><ul id="klist"></ul></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
+<div class="tmux" id="tmux">
+  <span class="tm-mode" id="tmMode">NORMAL</span><span class="tm-file" id="tmFile">~/hero.tsx</span><span>⎇ main ✓</span>
+  <span class="tm-sp"></span>
+  <span class="tm-bar"><i><b id="tmBar"></b></i><span id="tmPct">Top</span></span>
+  <span><span class="live-time">--:--</span> IST</span>
+  <button class="tm-key" id="tmKeys">? shortcuts</button>
+</div>
+<div class="keys" id="keys" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts"><div class="keys__box">
+  <h3>Keyboard shortcuts</h3>
+  <dl>
+    <dt><kbd>j</kbd><kbd>k</kbd></dt><dd>Next / previous section</dd>
+    <dt><kbd>1</kbd>–<kbd>9</kbd></dt><dd>Jump to section 01–09</dd>
+    <dt><kbd>t</kbd></dt><dd>Focus the terminal</dd>
+    <dt><kbd>Ctrl</kbd><kbd>K</kbd></dt><dd>Command menu</dd>
+    <dt><kbd>Tab</kbd></dt><dd>Autocomplete in the terminal</dd>
+    <dt><kbd>?</kbd></dt><dd>Show this panel</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Close</dd>
+  </dl>
+</div></div>
 
 <script>
 (() => {
@@ -833,9 +994,12 @@ const CMDS = {
   <span class="p">skills</span>      the stack, grouped
   <span class="p">experience</span>  roles since 2023
   <span class="p">projects</span>    side projects
+  <span class="p">now</span>         what I'm up to
+  <span class="p">vision</span>      where I'm headed
   <span class="p">deploy</span>      ship something
   <span class="p">kubectl get pods</span> · <span class="p">terraform plan</span> · <span class="p">uptime</span>
-  <span class="p">contact</span> · <span class="p">cv</span> · <span class="p">clear</span> · <span class="p">sudo hire jaimit</span>`),
+  <span class="p">contact</span> · <span class="p">cv</span> · <span class="p">ping jaimit</span> · <span class="p">clear</span> · <span class="p">sudo hire jaimit</span>
+<span class="c">tab completes · ↑ history · a few easter eggs hidden</span>`),
   whoami: () => out(`Jaimit Patel · DevOps engineer · Ahmedabad, India (IST)
 <span class="c">3+ years · AWS · Azure · GCP · on-prem · CKA and AWS DevOps Pro in progress</span>`),
   skills: () => { const g = { ci: 'ci/cd', iac: 'iac', k8s: 'containers', cloud: 'cloud', data: 'network & data', obs: 'observability', code: 'scripting' };
@@ -851,6 +1015,13 @@ const CMDS = {
 github    <a href="https://github.com/Jaimtlearn" target="_blank" rel="noopener">github.com/Jaimtlearn</a>
 linkedin  <a href="https://linkedin.com/in/jaimit2002" target="_blank" rel="noopener">linkedin.com/in/jaimit2002</a>`),
   cv: () => { out('<span class="ok">✓</span> downloading jaimit-patel-cv.pdf'); const a = document.createElement('a'); a.href = 'jaimit-patel-cv.pdf'; a.download = ''; a.click(); },
+  now: () => out(`<span class="c">/now · updated Nov 2026</span>
+working on   on-prem platform at Inexture Solutions
+building     <a href="https://github.com/Jaimtlearn/KeyStone" target="_blank" rel="noopener">keystone</a> (rust · tauri)
+studying     CKA · AWS DevOps Engineer Pro
+looking for  DevOps · Platform · SRE roles`),
+  vision: () => out(`<span class="p">north star</span> platforms developers never have to think about.
+<span class="c">› scrolling to direction…</span>`) || setTimeout(() => go('vision'), 700),
   uptime: () => out(`up 1,096 days · load average: low · SLO <span class="ok">99.9% met</span>`),
   clear: () => { tb.innerHTML = ''; },
   'kubectl get pods': () => out(`<span class="c">NAME               READY  STATUS   AGE</span>
@@ -869,6 +1040,15 @@ valkey-sentinel-0  1/1    <span class="ok">Running</span>  31d`),
     await sleep(300); out('<span class="ok">✓ deployed in 2m 14s</span> <span class="c">(was 3m 44s)</span>'); },
   'sudo hire jaimit': async () => { out('[sudo] password for recruiter: ••••••••'); await sleep(600); out('<span class="ok">✓ permission granted.</span> opening your mail client…'); await sleep(700); location.href = `mailto:${EMAIL}?subject=DevOps%20role`; },
 };
+Object.assign(CMDS, {
+  'ping jaimit': async () => { for (let i = 0; i < 4; i++) { await sleep(320); out(`64 bytes from jaimit.is-a.dev: seq=${i + 1} time=${(Math.random() * 6 + 9).toFixed(1)} ms`); }
+    out('<span class="ok">4 packets transmitted, 4 received, 0% loss</span> · replies to email within a day'); },
+  'rm -rf /': () => out('<span class="er">nice try.</span> everything here is in git and backed up with pgBackRest.'),
+  coffee: () => out('<span class="y">418 I\'m a teapot.</span> but I will happily talk infra over chai.'),
+  exit: () => out('there is no exit. there is only <span class="p">contact</span>.'),
+  history: () => out(hist.length ? hist.map((h, i) => `  ${String(i + 1).padStart(3)}  ${h.replace(/</g, '&lt;')}`).join('\n') : '<span class="c">no history yet</span>'),
+  date: () => out(new Date().toLocaleString('en-GB', { timeZone: 'Asia/Kolkata', dateStyle: 'full', timeStyle: 'short' }) + ' IST'),
+});
 const ALIAS = { ls: 'help', '?': 'help', resume: 'cv', 'hire': 'sudo hire jaimit', email: 'contact', 'git log': 'experience' };
 async function run(raw) {
   const cmd = raw.trim().toLowerCase().replace(/\s+/g, ' '); if (!cmd || busy) return;
@@ -879,6 +1059,11 @@ async function run(raw) {
   busy = true; try { await fn(); } finally { busy = false; }
 }
 $('#tform').addEventListener('submit', e => { e.preventDefault(); const v = tin.value; tin.value = ''; run(v); });
+tin.addEventListener('keydown', e => { if (e.key !== 'Tab') return; e.preventDefault(); const v = tin.value.toLowerCase(); if (!v) return;
+  const all = [...Object.keys(CMDS), ...Object.keys(ALIAS)].filter(c => c.startsWith(v)); if (all.length === 1) tin.value = all[0];
+  else if (all.length > 1) { let pre = all[0]; for (const c of all) while (!c.startsWith(pre)) pre = pre.slice(0, -1); tin.value = pre; out(`<span class="c">${all.join('   ')}</span>`); } });
+tin.addEventListener('focus', () => { $('#tmMode').textContent = 'INSERT'; $('#tmMode').classList.add('ins'); });
+tin.addEventListener('blur', () => { $('#tmMode').textContent = 'NORMAL'; $('#tmMode').classList.remove('ins'); });
 tin.addEventListener('keydown', e => { if (e.key === 'ArrowUp' && hi > 0) { tin.value = hist[--hi]; e.preventDefault(); } if (e.key === 'ArrowDown') { tin.value = hist[++hi] || ''; if (hi > hist.length) hi = hist.length; } });
 $('#chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) run(c.textContent); });
 $('#tbody').addEventListener('click', () => tin.focus({ preventScroll: true }));
@@ -998,11 +1183,39 @@ $$('.proj').forEach(p => {
   const draw = () => { const pts = data.map((v, i) => `${i / (data.length - 1) * 400},${245 - (v - 20) * 2.1}`); line.setAttribute('d', 'M' + pts.join(' L')); area.setAttribute('d', 'M0,250 L' + pts.join(' L') + ' L400,250Z'); };
   draw(); if (!RM) setInterval(() => { const last = data[data.length - 1]; let v = last + (Math.random() - .5) * 8; if (Math.random() < .06) v += 22; v = Math.max(28, Math.min(80, v * .9 + 44 * .1)); data.shift(); data.push(v); draw(); val.textContent = Math.round(v) + ' ms'; }, 450); })();
 
+/* ---------- tmux status bar ---------- */
+const SECS = [['top', 'hero.tsx'], ['about', 'about.md'], ['pipeline', 'ci.yml'], ['infra', 'platform.tf'], ['skills', 'stack.json'], ['impact', 'metrics.prom'], ['experience', 'career.log'], ['projects', 'projects/'], ['vision', 'roadmap.yaml'], ['contact', 'contact.sh']];
+const secEls = SECS.map(([id]) => id === 'top' ? $('.hero') : document.getElementById(id));
+const curSec = () => { let c = 0; secEls.forEach((el, i) => { if (el.getBoundingClientRect().top < innerHeight * .4) c = i; }); return c; };
+addEventListener('scroll', () => { const max = document.documentElement.scrollHeight - innerHeight, k = scrollY / max;
+  $('#tmFile').textContent = '~/' + SECS[curSec()][1]; $('#tmBar').style.width = k * 100 + '%'; $('#tmPct').textContent = k < .01 ? 'Top' : k > .99 ? 'Bot' : Math.round(k * 100) + '%'; }, { passive: true });
+
+/* ---------- keyboard navigation ---------- */
+const keys = $('#keys'); const toggleKeys = on => keys.classList.toggle('on', on ?? !keys.classList.contains('on'));
+$('#tmKeys').addEventListener('click', () => toggleKeys(true)); keys.addEventListener('click', e => { if (e.target === keys) toggleKeys(false); });
+const jump = i => { i = Math.max(0, Math.min(SECS.length - 1, i)); secEls[i].scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); };
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') toggleKeys(false);
+  if (e.target.closest('input,textarea') || e.metaKey || e.ctrlKey || e.altKey || $('#cmdk').classList.contains('on')) return;
+  if (e.key === '?') { toggleKeys(); return; }
+  if (e.key === 'j') jump(curSec() + 1); else if (e.key === 'k') jump(curSec() - 1);
+  else if (/^[1-9]$/.test(e.key)) jump(+e.key);
+  else if (e.key === 't') { e.preventDefault(); jump(0); setTimeout(() => tin.focus({ preventScroll: true }), RM ? 0 : 600); }
+});
+
+/* ---------- word reveal on scroll ---------- */
+const wrs = RM ? [] : $$('.about__story p:not(.nowr)');
+wrs.forEach(p => { p.classList.add('wr'); p.innerHTML = p.innerHTML.split(/(\s+)/).map(w => /\s+/.test(w) || !w ? w : `<span class="wd">${w}</span>`).join(''); });
+const wrUpdate = () => wrs.forEach(p => { const r = p.getBoundingClientRect(); const k = Math.max(0, Math.min(1, (innerHeight * .88 - r.top) / (r.height + innerHeight * .3)));
+  const ws = p.querySelectorAll('.wd'), n = Math.round(k * ws.length); ws.forEach((w, i) => w.classList.toggle('on', i < n)); });
+addEventListener('scroll', wrUpdate, { passive: true }); wrUpdate();
+
 /* ---------- clock ---------- */
-const clk = () => { $('#clock').textContent = 'IST ' + new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }) + ' · Ahmedabad'; }; clk(); setInterval(clk, 30000);
+const clk = () => { const tm = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }); $$('.live-time').forEach(e => e.textContent = tm); $('#clock').textContent = 'IST ' + new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }) + ' · Ahmedabad'; }; clk(); setInterval(clk, 30000);
 
 /* ---------- command palette ---------- */
 const K = [
+  ['Go to about', 'section', () => go('about')], ['Go to direction', 'section', () => go('vision')],
   ['Go to pipelines', 'section', () => go('pipeline')], ['Go to platform', 'section', () => go('infra')], ['Go to stack', 'section', () => go('skills')],
   ['Go to impact', 'section', () => go('impact')], ['Go to experience', 'section', () => go('experience')], ['Go to projects', 'section', () => go('projects')], ['Go to contact', 'section', () => go('contact')],
   ['Run the pipeline', 'action', () => { go('pipeline'); setTimeout(runPipe, 700); }], ['Simulate database failover', 'action', () => { go('infra'); setTimeout(failover, 900); }],
