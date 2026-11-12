@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jaimit Patel · DevOps Engineer</title>
-<meta name="description" content="Jaimit Patel, DevOps engineer in Ahmedabad. CI/CD, Terraform, Kubernetes and on-prem platforms across AWS, Azure and GCP.">
+<meta name="description" content="Jaimit Patel, DevOps engineer heading into DevSecOps, in Ahmedabad. Secure CI/CD, Terraform, Kubernetes and on-prem platforms across AWS, Azure and GCP.">
 <meta name="theme-color" content="#0f0f0f">
 <meta property="og:title" content="Jaimit Patel · DevOps Engineer">
 <link rel="canonical" href="https://jaimit.is-a.dev/">
@@ -91,7 +91,12 @@ body.loaded .boot{transform:translateY(-100%)}
 .logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.02em;padding:6px 14px 6px 6px}
 .logo i{width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--black);display:grid;place-items:center;font:600 13px var(--mono);font-style:normal}
 .nav a.l{padding:9px 14px;border-radius:999px;font-size:14.5px;color:var(--mute-d);transition:color .2s,background .2s}
-.nav a.l:hover,.nav a.l.on{color:var(--white);background:var(--graphite-3)}
+.nav a.l{position:relative;z-index:1;user-select:none;-webkit-user-select:none}
+.nav a.l:hover{color:var(--white)}
+.nav .links.seg a.l.on{color:var(--black)}
+.nav .links.seg.hovering a.l.on:not(.over),.nav .links.seg.dragging a.l.on:not(.over){color:var(--mute-d)}
+.nav .links.seg a.l.over{color:var(--black)}
+.nav .links .glass{top:0;bottom:0}
 .nav .k{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:14px;color:var(--mute-d)}
 .nav .k:hover{color:var(--white)}
 .nav .cta{background:var(--lime);color:var(--black);padding:10px 18px;border-radius:999px;font-weight:500;font-size:14.5px}
@@ -292,13 +297,29 @@ body.loaded .fade-up{opacity:1;transform:none}
 
 /* ---------- skills ---------- */
 #skills{padding:clamp(100px,14vh,160px) 0}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.tab{padding:11px 18px;border-radius:999px;border:1px solid var(--line-l);font-size:15px;font-weight:500;transition:all .25s}
-.tab:hover{border-color:var(--ink)}
-.tab.on{background:var(--black);color:var(--white);border-color:var(--black)}
+.tabs{display:flex;flex-wrap:nowrap;gap:2px;margin-bottom:28px;padding:5px;border-radius:999px;background:var(--paper-2);box-shadow:inset 0 1px 3px rgba(0,0,0,.08);width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{position:relative;z-index:1;flex:none;padding:10px 17px;border-radius:999px;font-size:15px;font-weight:500;color:var(--mute-l);transition:color .25s;white-space:nowrap;user-select:none;-webkit-user-select:none}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--ink)}
+.seg.dragging .tab.on:not(.over){color:var(--mute-l)}
+.seg .tab.over{color:var(--ink)}
+/* liquid glass thumb */
+.seg{position:relative;isolation:isolate}
+.glass{position:absolute;left:0;top:5px;bottom:5px;width:0;z-index:0;border-radius:999px;pointer-events:none;will-change:transform,width;transform-origin:50% 50%;
+  background:linear-gradient(180deg,rgba(236,254,200,.95),rgba(195,239,92,.8));backdrop-filter:blur(10px) saturate(180%);-webkit-backdrop-filter:blur(10px) saturate(180%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 5px rgba(60,90,0,.22),0 1px 1px rgba(0,0,0,.06),0 8px 22px -6px rgba(110,150,20,.45),0 0 0 .5px rgba(60,90,0,.18);transition:opacity .3s}
+.glass::before{content:"";position:absolute;inset:1px 8% auto;height:45%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));opacity:.8}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 120% at var(--gx,50%) 0%,rgba(255,255,255,.55),transparent 70%);opacity:0;transition:opacity .3s}
+.seg.dragging .glass::after{opacity:1}
+.seg.dragging .glass{box-shadow:inset 0 1px 1px #fff,inset 0 -2px 6px rgba(60,90,0,.25),0 2px 2px rgba(0,0,0,.05),0 18px 36px -8px rgba(110,150,20,.6),0 0 0 .5px rgba(60,90,0,.2)}
+.glass.grab{pointer-events:auto;cursor:grab;touch-action:none}
+body:not(.has-cursor) .seg.dragging,body:not(.has-cursor) .seg.dragging *{cursor:grabbing!important}
+body.has-cursor .glass.grab{cursor:none}
+.cursor-ring.drag{width:30px;height:30px;margin:-15px 0 0 -15px;background:rgba(255,255,255,.9)}
 .tab sup{font:11px var(--mono);margin-left:4px;opacity:.6}
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;position:relative}
-.cell{--x:50%;--y:50%;position:relative;min-height:150px;gap:22px;border-radius:16px;background:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:16px;overflow:hidden;transition:opacity .45s var(--ease),transform .45s var(--ease),filter .45s,background .3s}
+.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;position:relative}
+.cell{--x:50%;--y:50%;position:relative;min-height:132px;gap:18px;border-radius:16px;background:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:16px;overflow:hidden;transition:opacity .45s var(--ease),transform .45s var(--ease),filter .45s,background .3s}
 .cell::before{content:"";position:absolute;inset:0;background:radial-gradient(220px circle at var(--x) var(--y),rgba(195,239,92,.55),transparent 60%);opacity:0;transition:opacity .3s}
 .cell:hover::before{opacity:1}
 .cell>*{position:relative}
@@ -307,9 +328,62 @@ body.loaded .fade-up{opacity:1;transform:none}
 .cell .ic.t{font:600 15px var(--mono);color:var(--black)}
 .cell b{font-weight:500;font-size:16px;letter-spacing:-.01em;line-height:1.2}
 .cell small{display:block;font:11.5px var(--mono);color:var(--mute-l);margin-top:3px}
-.cell.dim{opacity:.18;transform:scale(.94);filter:grayscale(1)}
+.cell.dim{display:none}
+.cell.pop{animation:pop .5s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}}
+@media (max-width:1240px){.grid{grid-template-columns:repeat(6,1fr)}}
 @media (max-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:600px){.grid{grid-template-columns:repeat(3,1fr)}.cell{padding:12px;border-radius:12px}.cell .ic{width:36px;height:36px}.cell .ic img{width:20px;height:20px}.cell b{font-size:13.5px}.cell small{display:none}}
+
+/* ---------- rpg radar ---------- */
+.rpg{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-bottom:clamp(64px,8vw,100px)}
+.rpg__card{display:flex;flex-direction:column;background:var(--black);color:var(--white);border-radius:24px;padding:22px;position:relative;overflow:hidden;background-image:radial-gradient(circle at 50% 52%,rgba(218,250,156,.08),transparent 60%)}
+.rpg__top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;position:relative;z-index:2;margin-bottom:8px}
+.rpg__top .lbl{color:var(--mute-d);margin-right:6px;text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.build{display:flex;padding:4px;border-radius:999px;background:var(--graphite-2);border:1px solid var(--line-d);box-shadow:inset 0 1px 3px rgba(0,0,0,.4)}
+.build button{position:relative;z-index:1;font:500 12.5px var(--mono);padding:8px 13px;border-radius:999px;color:var(--mute-d);transition:color .25s;user-select:none;-webkit-user-select:none}
+.build button.on{color:var(--black)}
+.build.dragging button.on:not(.over){color:var(--mute-d)}
+.build button.over{color:var(--black)}
+.build .glass{top:4px;bottom:4px;background:linear-gradient(180deg,rgba(232,253,190,.96),rgba(195,239,92,.78));
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 5px rgba(60,90,0,.25),0 6px 20px -4px rgba(218,250,156,.45),0 0 0 .5px rgba(255,255,255,.25)}
+.build.dragging .glass{box-shadow:inset 0 1px 1px #fff,inset 0 -2px 6px rgba(60,90,0,.25),0 14px 34px -6px rgba(218,250,156,.65),0 0 0 .5px rgba(255,255,255,.3)}
+#radar{width:100%;flex:1;min-height:0;display:block;margin:6px 0}
+.rg-ring{fill:none;stroke:rgba(255,255,255,.08)}
+.rg-ring.o{stroke:rgba(255,255,255,.2)}
+.rg-axis{stroke:rgba(255,255,255,.08)}
+.rg-poly{fill:rgba(218,250,156,.18);stroke:var(--lime);stroke-width:2.5;stroke-linejoin:round;filter:drop-shadow(0 0 14px rgba(218,250,156,.35))}
+.rg-ghost{fill:none;stroke:rgba(255,255,255,.35);stroke-width:1.5;stroke-dasharray:5 6}
+.rg-dot{fill:var(--black);stroke:var(--lime);stroke-width:2.5;transition:r .25s}
+.rg-lbl{cursor:pointer}
+.rg-lbl text{font:500 14px var(--f);fill:var(--white);transition:fill .2s}
+.rg-lbl text.v{font:500 13px var(--mono);fill:var(--lime)}
+.rg-lbl:hover text,.rg-lbl.on text{fill:var(--lime)}
+.rg-lbl rect{fill:transparent}
+.rg-core{fill:var(--black);stroke:var(--lime);stroke-width:1.5}
+.rg-ctext{font:500 11px var(--mono);fill:var(--mute-d);letter-spacing:.08em;text-anchor:middle}
+.rg-cval{font:600 30px var(--f);fill:var(--lime);text-anchor:middle;letter-spacing:-.03em}
+.rg-cname{font:500 12px var(--f);fill:var(--white);text-anchor:middle}
+.rpg__foot{display:flex;justify-content:space-between;color:var(--mute-d)}
+#ovr{color:var(--lime)}
+.rpg__stats{background:var(--paper);border-radius:24px;padding:22px 24px;display:flex;flex-direction:column}
+.rpg__stats ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.st-row{display:grid;grid-template-columns:1fr auto;gap:6px 14px;padding:12px 12px;border-radius:12px;cursor:pointer;transition:background .2s}
+.st-row:hover,.st-row.on{background:var(--white)}
+.st-row b{font-weight:500;font-size:16px}
+.st-row .n{font:500 14px var(--mono)}
+.st-row .n em{font-style:normal;color:#5a7a12;margin-left:6px}
+.st-bar{grid-column:1/-1;height:8px;border-radius:8px;background:var(--paper-2);position:relative;overflow:hidden}
+.st-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;transition:width 1s var(--ease)}
+.st-bar i.g{background:repeating-linear-gradient(-45deg,#c3ef5c 0 6px,#d8f59a 6px 12px)}
+.st-bar i.c{background:var(--black)}
+.st-row small{grid-column:1/-1;font:12px var(--mono);color:var(--mute-l)}
+.perk{margin-top:auto;padding:16px;border-radius:14px;background:var(--black);color:#d6d6d2;font-size:12.5px;line-height:1.6}
+.perk span{display:block;color:var(--lime);margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
+.inv-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}
+.inv-head h3{font-size:clamp(28px,3vw,40px);letter-spacing:-.03em}
+@media (max-width:1023px){.rpg{grid-template-columns:1fr}}
+@media (max-width:520px){.rg-lbl text{font-size:18px}.rg-lbl text.v{font-size:17px}.rpg__card{padding:16px}.build button{padding:7px 10px;font-size:11.5px}}
 
 /* ---------- impact ---------- */
 #impact{padding:clamp(100px,14vh,160px) 0;background:var(--lime);color:var(--black)}
@@ -484,7 +558,7 @@ body.loaded .tmux{transform:none}
 <header class="nav" id="nav">
   <div class="nav__in">
     <a class="logo" href="#top"><i>JP</i>Jaimit Patel</a>
-    <nav class="links" aria-label="Sections">
+    <nav class="links seg" aria-label="Sections">
       <a class="l" href="#about">About</a>
       <a class="l" href="#pipeline">Pipelines</a>
       <a class="l" href="#infra">Platform</a>
@@ -505,9 +579,9 @@ body.loaded .tmux{transform:none}
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
-      <span class="eyebrow fade-up" style="transition-delay:.5s">Open to DevOps roles · Ahmedabad, India</span>
+      <span class="eyebrow fade-up" style="transition-delay:.5s">Open to DevSecOps roles · Ahmedabad, India</span>
       <h1 id="h1"><span class="w"><span>Pipelines,</span></span> <span class="w"><span>platforms</span></span> <span class="w"><span>&amp;</span></span> <span class="w"><span><span class="hl">99.9%</span></span></span> <span class="w"><span>uptime.</span></span></h1>
-      <p class="sub fade-up" style="transition-delay:.8s">I'm Jaimit Patel, a DevOps engineer with 3+ years building CI/CD, Terraform and Kubernetes platforms across AWS, Azure, GCP and bare-metal data centres.</p>
+      <p class="sub fade-up" style="transition-delay:.8s">I'm Jaimit Patel, a DevOps engineer on the way to DevSecOps. 3+ years building CI/CD, Terraform and Kubernetes platforms across AWS, Azure, GCP and bare metal, with security built in from the first commit.</p>
       <div class="actions fade-up" style="transition-delay:.95s">
         <a class="btn magnet" href="#contact">Start a conversation <span class="arr">→</span></a>
         <a class="btn btn--ghost magnet" href="jaimit-patel-cv.pdf" download>Download CV <span class="arr">↓</span></a>
@@ -551,7 +625,7 @@ body.loaded .tmux{transform:none}
       <div class="about__story" data-reveal>
         <p class="lead nowr">Deploys nobody worries about. Failovers nobody notices. Alerts that fire <span class="hl">before</span> users do.</p>
         <p>I started in 2023 as a junior DevOps engineer on AWS while finishing my B.Tech in Computer Science. Since then I've run Kubernetes across three clouds, cut deployment time by about 40% with standardised pipelines, and now I'm building an on-prem data centre from the racks up: firewall, VLANs, Proxmox, HA PostgreSQL and end-to-end mTLS.</p>
-        <p>What keeps me in this work is the moment a fragile, manual process becomes a button anyone on the team can press safely. I like systems that explain themselves: everything in code, everything monitored, and no secret ever committed to git.</p>
+        <p>What keeps me in this work is the moment a fragile, manual process becomes a button anyone on the team can press safely. I like systems that explain themselves: everything in code, everything monitored, and no secret ever committed to git. Where I'm heading is DevSecOps: security gates in every pipeline, secrets and certificates handled by machines, and threats spotted early by a SIEM rather than by users.</p>
         <div class="facts">
           <span>📍 Ahmedabad, India</span><span>🕒 <b class="live-time">--:--</b> IST</span><span>🗣 English · Hindi</span><span>🎓 B.Tech CSE · 2024</span>
         </div>
@@ -562,7 +636,7 @@ body.loaded .tmux{transform:none}
           <div><dt>Working on</dt><dd>An on-prem platform at Inexture Solutions: Proxmox, Patroni, OpenBao, Grafana</dd></div>
           <div><dt>Building</dt><dd><a href="https://github.com/Jaimtlearn/KeyStone" target="_blank" rel="noopener">Keystone ↗</a>, an SSH and secrets manager in Rust and Tauri</dd></div>
           <div><dt>Studying for</dt><dd>CKA and AWS Certified DevOps Engineer, Professional</dd></div>
-          <div><dt>Looking for</dt><dd>A DevOps, Platform or SRE role on a team that treats infrastructure as a product</dd></div>
+          <div><dt>Looking for</dt><dd>A DevSecOps or DevOps role on a team that takes security as seriously as uptime</dd></div>
         </dl>
         <a class="btn magnet" href="#contact">Talk to me <span class="arr">→</span></a>
       </aside>
@@ -639,18 +713,39 @@ body.loaded .tmux{transform:none}
 <section id="skills" class="light">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <div><span class="eyebrow">04 · Stack</span><h2 data-scramble>The tools I run in production.</h2></div>
-      <span class="sec-num" id="scount">30 tools</span>
+      <div><span class="eyebrow">04 · Skill tree</span><h2 data-scramble>Character stats.</h2></div>
+      <span class="sec-num">class: DevSecOps · lvl 3</span>
     </div>
-    <div class="tabs" id="tabs" data-reveal role="tablist">
+    <div class="rpg" data-reveal>
+      <div class="rpg__card">
+        <div class="rpg__top">
+          <div class="mono"><span class="lbl">player</span> Jaimit Patel</div>
+          <div class="build seg" role="tablist" aria-label="Skill build">
+            <button class="on" data-b="now" role="tab" aria-selected="true">Current build</button>
+            <button data-b="goal" role="tab" aria-selected="false">Target: DevSecOps</button>
+          </div>
+        </div>
+        <svg id="radar" viewBox="0 0 600 500" role="img" aria-label="Skill radar chart"></svg>
+        <div class="rpg__foot mono"><span>Click a stat to see its tools</span><span id="ovr">OVR 83</span></div>
+      </div>
+      <div class="rpg__stats">
+        <ol id="statlist"></ol>
+        <div class="perk mono"><span>★ perk unlocked</span>Security built in from the first commit: scans, secrets and mTLS on every pipeline.</div>
+      </div>
+    </div>
+    <div class="inv-head" data-reveal>
+      <h3>Inventory</h3><span class="sec-num" id="scount">40 tools</span>
+    </div>
+    <div class="tabs seg" id="tabs" data-reveal role="tablist">
       <button class="tab on" data-f="all">All</button>
-      <button class="tab" data-f="ci">CI/CD</button>
-      <button class="tab" data-f="iac">IaC &amp; config</button>
+      <button class="tab" data-f="ci">CI/CD &amp; GitOps</button>
+      <button class="tab" data-f="sec">Security</button>
       <button class="tab" data-f="k8s">Containers</button>
-      <button class="tab" data-f="cloud">Cloud</button>
-      <button class="tab" data-f="data">Network &amp; data</button>
+      <button class="tab" data-f="cloud">Cloud &amp; infra</button>
+      <button class="tab" data-f="iac">IaC</button>
       <button class="tab" data-f="obs">Observability</button>
-      <button class="tab" data-f="code">Scripting</button>
+      <button class="tab" data-f="data">Databases</button>
+      <button class="tab" data-f="code">Languages</button>
     </div>
     <div class="grid" id="sgrid" data-reveal></div>
   </div>
@@ -798,14 +893,14 @@ body.loaded .tmux{transform:none}
     </div>
     <div class="north" data-reveal>
       <span class="mono">north star</span>
-      <p>Platforms that developers <span class="hl">never have to think about.</span></p>
-      <p class="sub">I want to build internal platforms where any engineer can ship to production safely, in minutes, without waiting on ops or reading a wiki first.</p>
+      <p>Secure platforms that developers <span class="hl">never have to think about.</span></p>
+      <p class="sub">I want to build platforms where the secure way is also the fastest way: any engineer ships to production in minutes, and every change is scanned, signed and observed on the way.</p>
     </div>
     <ol class="road" id="road" data-reveal>
       <li class="done"><span class="st">✓ shipped</span><b>2023 – 2026</b><p>Pipelines, Terraform and Kubernetes across AWS, Azure and GCP, at 99.9% uptime.</p></li>
       <li class="cur"><span class="st">● in progress</span><b>Now</b><p>An on-prem data centre at work, Keystone after hours, and CKA plus AWS DevOps Pro.</p></li>
-      <li><span class="st">○ next</span><b>Next role</b><p>Platform or SRE work: golden paths, self-service environments, SLOs that mean something.</p></li>
-      <li class="star"><span class="st">★ goal</span><b>Long term</b><p>Lead a platform team, and grow Keystone into open-source tooling other engineers rely on.</p></li>
+      <li><span class="st">○ next</span><b>DevSecOps</b><p>Shift security left: SAST and image scans as pipeline gates, policy as code, secrets rotation and a SIEM people trust.</p></li>
+      <li class="star"><span class="st">★ goal</span><b>Long term</b><p>Lead a DevSecOps team, and grow Keystone into open-source security tooling other engineers rely on.</p></li>
     </ol>
   </div>
 </section>
@@ -817,7 +912,7 @@ body.loaded .tmux{transform:none}
     <div class="contact">
       <div data-reveal>
         <span class="eyebrow">09 · Contact</span>
-        <p class="sub" style="margin:22px 0 30px">Hiring for DevOps, platform or SRE? I reply within a day.</p>
+        <p class="sub" style="margin:22px 0 30px">Hiring for DevSecOps, DevOps or platform roles? I reply within a day.</p>
         <button class="mail" id="copyMail" data-cursor="Copy">jaimitpatel.1432@gmail.com <span class="cp">copy</span></button>
         <div class="actions">
           <a class="btn magnet" href="mailto:jaimitpatel.1432@gmail.com">Email Jaimit <span class="arr">→</span></a>
@@ -886,9 +981,10 @@ const bootLines = ['<b>$</b> ssh jaimit@platform', 'resolving infra… ok', 'ter
 if (FINE && !RM) {
   document.body.classList.add('has-cursor');
   const c = $('.cursor'), r = $('.cursor-ring'); let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
-  addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; c.style.transform = `translate(${mx}px,${my}px)`; });
+  addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY; c.style.transform = `translate(${mx}px,${my}px)`; }, { passive: true });
+  addEventListener('pointerdown', e => { if (e.target.closest('.seg')) r.classList.add('drag'); }); addEventListener('pointerup', () => r.classList.remove('drag')); addEventListener('pointercancel', () => r.classList.remove('drag'));
   (function loop() { rx += (mx - rx) * .18; ry += (my - ry) * .18; r.style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
-  document.addEventListener('mouseover', e => {
+  document.addEventListener('pointerover', e => {
     const big = e.target.closest('[data-cursor]'), h = e.target.closest('a,button,input,.node,.cell');
     r.classList.toggle('big', !!big); r.textContent = big ? big.dataset.cursor : ''; r.classList.toggle('hover', !big && !!h);
   });
@@ -901,10 +997,10 @@ if (FINE && !RM) {
 /* ---------- nav: hide on scroll down, progress, active ---------- */
 let lastY = 0; const nav = $('#nav'), prog = $('#progress');
 addEventListener('scroll', () => {
-  const y = scrollY; nav.classList.toggle('hide', y > lastY && y > 300); lastY = y;
+  const y = scrollY; if (!document.querySelector('.nav .links.dragging')) nav.classList.toggle('hide', y > lastY && y > 300); else nav.classList.remove('hide'); lastY = y;
   prog.style.transform = `scaleX(${y / (document.documentElement.scrollHeight - innerHeight)})`;
 }, { passive: true });
-const navIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $$('.nav a.l').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
+const navIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $$('.nav a.l').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); window.navGlass && navGlass.sync(); }), { rootMargin: '-45% 0px -50% 0px' });
 $$('main>section[id]').forEach(s => navIO.observe(s));
 
 /* ---------- hero network canvas ---------- */
@@ -967,22 +1063,144 @@ $$('[data-reveal],[data-scramble]').forEach(el => revIO.observe(el));
 
 /* ---------- tools data ---------- */
 const T = [
-  ['GitHub Actions', 'github-actions', 'ci', 'workflows'], ['Jenkins', 'jenkins', 'ci', 'pipelines'], ['Bitbucket', 'bitbucket', 'ci', 'pipelines'], ['Argo CD', 'argo', 'ci', 'gitops'], ['Git', 'git', 'ci', 'vcs'], ['Nexus', 'NX', 'ci', 'artifacts'],
-  ['Terraform', 'terraform', 'iac', 'modular IaC'], ['Ansible', 'ansible', 'iac', 'config'], ['Docker', 'docker', 'k8s', 'containers'], ['Kubernetes', 'kubernetes', 'k8s', 'EKS · AKS · GKE'], ['Helm', 'helm', 'k8s', 'charts'], ['Istio', 'IS', 'k8s', 'service mesh'],
-  ['AWS', 'aws', 'cloud', 'EKS · RDS · VPC'], ['Azure', 'azure', 'cloud', 'AKS · Key Vault'], ['Google Cloud', 'google-cloud', 'cloud', 'GKE · Cloud SQL'], ['Proxmox', 'PX', 'cloud', 'on-prem HA'],
-  ['PostgreSQL', 'postgres', 'data', 'Patroni HA'], ['MySQL', 'mysql', 'data', 'RDS'], ['RabbitMQ', 'rabbitmq', 'data', 'quorum queues'], ['Valkey', 'valkey-icon', 'data', 'Sentinel'], ['Nginx', 'nginx', 'data', 'HA proxy'], ['OPNsense', 'OP', 'data', 'firewall · VLAN'], ['OpenBao', 'OB', 'data', 'PKI · mTLS'],
-  ['Prometheus', 'prometheus', 'obs', 'metrics'], ['Grafana', 'grafana', 'obs', 'dashboards'], ['Loki', 'LK', 'obs', 'logs'], ['Trivy', 'TV', 'obs', 'scanning'],
-  ['Bash', 'bash', 'code', 'scripting'], ['Python', 'python', 'code', 'Boto3'], ['Linux', 'linux-tux', 'code', 'ops'],
+  ['GitHub', 'github', 'ci', 'repos · reviews'], ['GitHub Actions', 'github-actions', 'ci', 'workflows'], ['GitLab', 'gitlab-icon', 'ci', 'repos · MRs'], ['GitLab CI/CD', 'gitlab-icon', 'ci', 'pipelines'],
+  ['Bitbucket', 'bitbucket', 'ci', 'repos'], ['Bitbucket Pipelines', 'bitbucket', 'ci', 'pipelines'], ['Jenkins', 'jenkins', 'ci', 'pipelines'], ['Argo CD', 'argo', 'ci', 'GitOps'], ['Git', 'git', 'ci', 'vcs'], ['Nexus', 'NX', 'ci', 'artifacts · images'],
+  ['Trivy', 'TV', 'sec', 'image & IaC scans'], ['Wazuh', 'WZ', 'sec', 'SIEM · XDR'], ['OpenBao', 'OB', 'sec', 'PKI · secrets · mTLS'], ['OPNsense', 'OP', 'sec', 'firewall · VLANs'], ['OpenVPN', 'VP', 'sec', 'secure access'],
+  ['JumpServer', 'JS', 'sec', 'bastion access'], ['AWS IAM', 'aws-iam', 'sec', 'least privilege'], ['Azure Key Vault', 'azure', 'sec', 'secrets · keys'],
+  ['Docker', 'docker', 'k8s', 'containers'], ['Podman', 'podman', 'k8s', 'rootless containers'], ['Kubernetes', 'kubernetes', 'k8s', 'EKS · AKS · GKE'], ['Helm', 'helm', 'k8s', 'charts'], ['Istio', 'IS', 'k8s', 'service mesh'],
+  ['Karpenter', 'KP', 'k8s', 'node autoscaling'], ['Cluster Autoscaler', 'CA', 'k8s', 'node scaling'], ['Ingress-NGINX', 'nginx', 'k8s', 'ingress'], ['Traefik', 'traefik-proxy', 'k8s', 'ingress · proxy'],
+  ['AWS', 'aws', 'cloud', 'EC2 · VPC · ALB · S3'], ['AWS Lambda', 'aws-lambda', 'cloud', 'serverless'], ['ECS / Fargate', 'aws-ecs', 'cloud', 'containers on AWS'], ['Route 53', 'aws-route53', 'cloud', 'DNS'],
+  ['Azure', 'azure', 'cloud', 'VNet · AKS · ACR · App Gateway'], ['Google Cloud', 'google-cloud', 'cloud', 'GKE · Cloud SQL · Artifact Registry'], ['Proxmox', 'PX', 'cloud', 'on-prem HA'], ['VMware ESXi', 'vmware', 'cloud', 'virtualisation'],
+  ['Nginx', 'nginx', 'cloud', 'HA reverse proxy'], ['HAProxy', 'HA', 'cloud', 'load balancing'], ['Keepalived', 'KA', 'cloud', 'VIP failover'],
+  ['Terraform', 'terraform', 'iac', 'modular IaC'], ['Ansible', 'ansible', 'iac', 'config management'], ['CloudFormation', 'aws-cloudformation', 'iac', 'AWS stacks'], ['Boto3', 'python', 'iac', 'AWS automation'], ['YAML', 'yaml', 'iac', 'manifests · pipelines'],
+  ['Prometheus', 'prometheus', 'obs', 'metrics'], ['Alertmanager', 'prometheus', 'obs', 'alert routing'], ['VictoriaMetrics', 'victoriametrics', 'obs', 'long-term metrics'], ['Grafana', 'grafana', 'obs', 'dashboards'], ['Loki', 'LK', 'obs', 'logs'],
+  ['OpenTelemetry', 'opentelemetry-icon', 'obs', 'traces · metrics'], ['Uptime Kuma', 'uptimekuma', 'obs', 'uptime checks'], ['CloudWatch', 'aws-cloudwatch', 'obs', 'AWS monitoring'], ['GCP Cloud Monitoring', 'google-cloud', 'obs', 'GCP monitoring'],
+  ['Elasticsearch', 'elasticsearch', 'obs', 'ELK · search'], ['Logstash', 'logstash', 'obs', 'ELK · pipelines'], ['Kibana', 'kibana', 'obs', 'ELK · dashboards'],
+  ['PostgreSQL', 'postgres', 'data', 'HA clusters'], ['Patroni + etcd', 'etcd', 'data', 'PostgreSQL failover'], ['PgBouncer', 'PB', 'data', 'connection pooling'], ['pgBackRest', 'BR', 'data', 'backup · PITR'],
+  ['MySQL', 'mysql', 'data', 'RDS'], ['ClickHouse', 'clickhouse', 'data', 'high-volume ingest'], ['MongoDB', 'mongodb-icon', 'data', 'documents'], ['Cassandra', 'cassandra', 'data', 'wide-column'], ['OpenSearch', 'opensearch-icon', 'data', 'search datastore'],
+  ['Redis', 'redis', 'data', 'cache'], ['Valkey', 'valkey-icon', 'data', 'Sentinel HA'], ['ElastiCache', 'aws-elasticache', 'data', 'managed cache'], ['RabbitMQ', 'rabbitmq', 'data', 'quorum queues'], ['Kafka', 'kafka-icon', 'data', 'event streaming'],
+  ['Rust', 'rust', 'code', 'Actix · Tauri'], ['Python', 'python', 'code', 'automation'], ['Bash', 'bash', 'code', 'scripting'], ['Groovy', 'apachegroovy', 'code', 'Jenkinsfiles'], ['SQL', 'SQ', 'code', 'queries · tuning'],
+  ['jq / yq', 'JQ', 'code', 'JSON · YAML'], ['Linux admin', 'linux-tux', 'code', 'systemd · iptables · LVM'], ['Networking', 'NW', 'code', 'TCP/IP · DNS · VLANs · BGP'],
 ];
 const ic = id => id.length === 2 ? `<span class="ic t">${id}</span>` : `<span class="ic"><img src="assets/icons/${id}.svg" alt="" loading="lazy"></span>`;
-$('#mq').innerHTML = [...T, ...T].filter(t => t[1].length > 2).map(t => `<span class="tool"><i><img src="assets/icons/${t[1]}.svg" alt=""></i>${t[0]}</span>`).join('');
+const MQ = T.filter((t, i) => t[1].length > 2 && T.findIndex(u => u[1] === t[1]) === i); $('#mq').innerHTML = [...MQ, ...MQ].map(t => `<span class="tool"><i><img src="assets/icons/${t[1]}.svg" alt=""></i>${t[0]}</span>`).join('');
 $('#sgrid').innerHTML = T.map(t => `<div class="cell" data-c="${t[2]}">${ic(t[1])}<div><b>${t[0]}</b><small>${t[3]}</small></div></div>`).join('');
 $('#scount').textContent = T.length + ' tools';
 $$('.tab').forEach(b => { const n = b.dataset.f === 'all' ? T.length : T.filter(t => t[2] === b.dataset.f).length; b.insertAdjacentHTML('beforeend', `<sup>${n}</sup>`);
   b.addEventListener('click', () => { $$('.tab').forEach(x => x.classList.toggle('on', x === b)); const f = b.dataset.f;
-    $$('.cell').forEach((c, i) => { c.style.transitionDelay = (i % 6) * 25 + 'ms'; c.classList.toggle('dim', f !== 'all' && c.dataset.c !== f); });
+    let k = 0; $$('.cell').forEach(c => { const hide = f !== 'all' && c.dataset.c !== f; c.classList.toggle('dim', hide); c.classList.remove('pop'); if (!hide) { void c.offsetWidth; c.style.animationDelay = Math.min(k++, 18) * 22 + 'ms'; c.classList.add('pop'); } });
     $('#scount').textContent = (f === 'all' ? T.length : $$('.cell:not(.dim)').length) + ' tools'; }); });
 $('#sgrid').addEventListener('mousemove', e => { const c = e.target.closest('.cell'); if (!c) return; const b = c.getBoundingClientRect(); c.style.setProperty('--x', e.clientX - b.left + 'px'); c.style.setProperty('--y', e.clientY - b.top + 'px'); });
+
+/* ---------- rpg radar ---------- */
+(() => {
+  const ST = [
+    { k: 'Containers & K8s', sh: 'Containers', c: 'k8s', now: 95, goal: 98, t: 'Docker · Podman · Kubernetes · Helm · Karpenter' },
+    { k: 'CI/CD & GitOps', sh: 'CI/CD', c: 'ci', now: 92, goal: 94, t: 'Jenkins · GitHub Actions · GitLab CI · Argo CD' },
+    { k: 'Cloud & infra', sh: 'Cloud', c: 'cloud', now: 82, goal: 86, t: 'AWS · Azure · GCP · Proxmox · VMware' },
+    { k: 'Security', sh: 'Security', c: 'sec', now: 90, goal: 96, t: 'Trivy · Wazuh · OpenBao · IAM · mTLS' },
+    { k: 'Observability', sh: 'Observability', c: 'obs', now: 83, goal: 88, t: 'Prometheus · VictoriaMetrics · OTel · ELK' },
+    { k: 'IaC & automation', sh: 'IaC', c: 'iac', now: 86, goal: 89, t: 'Terraform · Ansible · CloudFormation · Boto3' },
+  ];
+  const svg = $('#radar'), NS = 'http://www.w3.org/2000/svg', cx = 300, cy = 262, R = 158, N = ST.length;
+  const mk = (t, a, p = svg) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const ang = i => -Math.PI / 2 + i * 2 * Math.PI / N, pt = (i, r) => [cx + Math.cos(ang(i)) * r, cy + Math.sin(ang(i)) * r];
+  const ring = r => ST.map((_, i) => pt(i, r).join(',')).join(' ');
+  [.25, .5, .75, 1].forEach(f => mk('polygon', { points: ring(R * f), class: 'rg-ring' + (f === 1 ? ' o' : '') }));
+  ST.forEach((_, i) => { const [x, y] = pt(i, R); mk('line', { x1: cx, y1: cy, x2: x, y2: y, class: 'rg-axis' }); });
+  const ghost = mk('polygon', { class: 'rg-ghost', points: ring(0) }), poly = mk('polygon', { class: 'rg-poly', points: ring(0) });
+  const dots = ST.map(() => mk('circle', { r: 5, class: 'rg-dot', cx, cy }));
+  const core = mk('g', {}); mk('polygon', { points: ST.map((_, i) => pt(i, 60).join(',')).join(' '), class: 'rg-core' }, core);
+  const cT = mk('text', { x: cx, y: cy - 14, class: 'rg-ctext' }, core), cV = mk('text', { x: cx, y: cy + 14, class: 'rg-cval' }, core), cN = mk('text', { x: cx, y: cy + 34, class: 'rg-cname' }, core);
+  const labels = ST.map((s, i) => { const [x, y] = pt(i, R + 34), g = mk('g', { class: 'rg-lbl', tabindex: 0, role: 'button' });
+    const anchor = Math.abs(x - cx) < 5 ? 'middle' : x > cx ? 'start' : 'end'; const dy = y < cy - 5 ? -6 : y > cy + 5 ? 14 : 0;
+    const t1 = mk('text', { x: x, y: y + dy, 'text-anchor': anchor }, g); t1.textContent = s.sh;
+    const t2 = mk('text', { x: x, y: y + dy + 18, 'text-anchor': anchor, class: 'v' }, g);
+    g.addEventListener('mouseenter', () => focus(i)); g.addEventListener('mouseleave', () => focus(null)); g.addEventListener('click', () => pick(i));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(i); } }); return { g, t2 }; });
+  // stat list
+  $('#statlist').innerHTML = ST.map((s, i) => `<li class="st-row" data-i="${i}"><b>${s.k}</b><span class="n"></span><span class="st-bar"><i class="g"></i><i class="c"></i></span><small>${s.t}</small></li>`).join('');
+  const rows = $$('#statlist .st-row');
+  rows.forEach((r, i) => { r.addEventListener('mouseenter', () => focus(i)); r.addEventListener('mouseleave', () => focus(null)); r.addEventListener('click', () => pick(i)); });
+  let build = 'now', cur = ST.map(() => 0), shown = false;
+  const vals = () => ST.map(s => s[build]);
+  const best = () => { const v = vals(); return v.indexOf(Math.max(...v)); };
+  function centre(i) { const v = vals(); if (i == null) { const b = best(); cT.textContent = build === 'now' ? 'MAIN STAT' : 'TARGET MAIN'; i = b; } else cT.textContent = 'STAT';
+    cV.textContent = v[i]; cN.textContent = ST[i].sh; }
+  function focus(i) { labels.forEach((l, j) => l.g.classList.toggle('on', j === i)); rows.forEach((r, j) => r.classList.toggle('on', j === i)); dots.forEach((d, j) => d.setAttribute('r', j === i ? 8 : 5)); centre(i); }
+  function pick(i) { const tab = $(`.tab[data-f="${ST[i].c}"]`); tab && tab.click(); $('.inv-head').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); }
+  function draw(v) { const pts = v.map((x, i) => pt(i, R * x / 100)); poly.setAttribute('points', pts.map(p => p.join(',')).join(' ')); pts.forEach((p, i) => { dots[i].setAttribute('cx', p[0]); dots[i].setAttribute('cy', p[1]); }); }
+  function render() { const v = vals(), from = cur.slice(), t0 = performance.now(), dur = RM ? 1 : 900;
+    ghost.setAttribute('points', build === 'goal' ? ST.map((s, i) => pt(i, R * s.now / 100).join(',')).join(' ') : ring(0));
+    const step = t => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); cur = from.map((f, i) => f + (v[i] - f) * e); draw(cur); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step);
+    labels.forEach((l, i) => l.t2.textContent = build === 'goal' && ST[i].goal !== ST[i].now ? `${ST[i].now} → ${ST[i].goal}` : v[i]);
+    rows.forEach((r, i) => { const s = ST[i]; r.querySelector('.n').innerHTML = build === 'goal' ? `${s.now}<em>→ ${s.goal}</em>` : s.now;
+      r.querySelector('i.c').style.width = (shown ? s.now : 0) + '%'; r.querySelector('i.g').style.width = (shown && build === 'goal' ? s.goal : 0) + '%'; });
+    $('#ovr').textContent = 'OVR ' + Math.round(v.reduce((a, b) => a + b) / N); centre(null); }
+  $$('.build button').forEach(b => b.addEventListener('click', () => { build = b.dataset.b; $$('.build button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b); }); render(); }));
+  centre(null); draw(cur);
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { shown = true; render(); o.disconnect(); } }, { threshold: .15 }).observe($('.rpg'));
+  window.__radarGoal = () => $('.build button[data-b="goal"]').click();
+})();
+
+/* ---------- liquid glass segmented controls ---------- */
+function glassSeg(seg, sel, opt = {}) {
+  const btns = () => [...seg.querySelectorAll(sel)];
+  const th = document.createElement('span'); th.className = 'glass grab'; th.setAttribute('aria-hidden', 'true'); seg.prepend(th);
+  let x = 0, w = 0, vx = 0, vw = 0, tx = 0, tw = 0, drag = null, raf = 0, sx = 1, sy = 1, lastX = 0, vel = 0, init = false;
+  const box = b => ({ l: b.offsetLeft, w: b.offsetWidth });
+  const active = () => btns().find(b => b.classList.contains('on')) || (opt.allowNone ? null : btns()[0]);
+  const nearest = cx => btns().reduce((best, b) => { const o = box(b), d = Math.abs(o.l + o.w / 2 - cx); return d < best.d ? { b, d } : best; }, { b: null, d: 1e9 }).b;
+  const paint = () => { th.style.width = w + 'px'; th.style.transform = `translateX(${x}px) scale(${sx},${sy})`; };
+  const loop = () => {
+    raf = 0; const k = drag ? .5 : .16, d = drag ? .5 : .72;
+    if (!drag) { vx = (vx + (tx - x) * k) * d; x += vx; }
+    vw = (vw + (tw - w) * .2) * .7; w += vw;
+    const stretch = Math.min(Math.abs(drag ? vel : vx) / 30, .22), lift = drag ? 1.07 : 1;
+    sx += ((lift + stretch) - sx) * .3; sy += ((lift - stretch * .7) - sy) * .3; paint();
+    if (drag || Math.abs(tx - x) > .3 || Math.abs(vx) > .1 || Math.abs(tw - w) > .3 || Math.abs(sx - 1) > .003) raf = requestAnimationFrame(loop);
+    else { x = tx; w = tw; sx = sy = 1; paint(); }
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+  const snap = (b, instant) => { th.style.opacity = b ? 1 : 0; if (!b) return; const o = box(b); tx = o.l; tw = o.w; if (instant || !init || RM) { x = tx; w = tw; vx = vw = 0; init = true; paint(); } else kick(); };
+  const mark = b => btns().forEach(x => x.classList.toggle('over', x === b));
+  seg.addEventListener('click', e => { const b = e.target.closest(sel); if (b) setTimeout(() => snap(b), 0); });
+  const down = e => {
+    if (e.button > 0) return; const onThumb = e.target === th;
+    if (e.pointerType !== 'mouse' && !onThumb) return; // touch: drag from the glass, swipe elsewhere scrolls
+    const b = e.target.closest(sel); const ax = e.clientX - seg.getBoundingClientRect().left + seg.scrollLeft;
+    drag = { id: e.pointerId, start: e.clientX, moved: false, grab: onThumb || (b && b.classList.contains('on')) ? ax - x : w / 2, tap: b };
+    lastX = e.clientX; vel = 0; seg.setPointerCapture(e.pointerId); seg.classList.add('dragging'); kick(); e.preventDefault();
+  };
+  const move = e => {
+    if (!drag || e.pointerId !== drag.id) return; if (Math.abs(e.clientX - drag.start) > 4) drag.moved = true;
+    const ax = e.clientX - seg.getBoundingClientRect().left + seg.scrollLeft, bs = btns(), first = box(bs[0]), last = box(bs[bs.length - 1]);
+    let nx = ax - drag.grab; const min = first.l, max = last.l + last.w - w;
+    if (nx < min) nx = min - Math.sqrt(min - nx) * 2; if (nx > max) nx = max + Math.sqrt(nx - max) * 2; // rubber band
+    vel = e.clientX - lastX; lastX = e.clientX; x = nx;
+    const nb = nearest(x + w / 2); tw = box(nb).w; mark(nb); if (drag.moved && nb !== drag.last) { drag.last = nb; opt.onOver && opt.onOver(nb); } th.style.setProperty('--gx', Math.max(0, Math.min(100, (ax - x) / w * 100)) + '%');
+    // keep the thumb in view inside a scrolling track
+    const r = seg.getBoundingClientRect(); if (e.clientX > r.right - 30) seg.scrollLeft += 8; else if (e.clientX < r.left + 30) seg.scrollLeft -= 8;
+    kick();
+  };
+  const up = e => {
+    if (!drag || e.pointerId !== drag.id) return; const d = drag; drag = null; seg.classList.remove('dragging'); mark(null);
+    try { seg.releasePointerCapture(e.pointerId); } catch (_) {}
+    const b = d.moved ? nearest(x + w / 2) : (d.tap || active()); vx = vel * .6;
+    seg.__skip = true; setTimeout(() => seg.__skip = false, 0);
+    if (b && !b.classList.contains('on')) b.click(); snap(b || active()); kick();
+  };
+  seg.addEventListener('pointerdown', down); seg.addEventListener('pointermove', move); seg.addEventListener('pointerup', up); seg.addEventListener('pointercancel', up);
+  seg.addEventListener('click', e => { if (seg.__skip && e.isTrusted) { e.stopPropagation(); e.preventDefault(); } }, true);
+  const resnap = () => snap(active(), true);
+  new ResizeObserver(resnap).observe(seg); document.fonts && document.fonts.ready.then(resnap); resnap();
+  if (opt.hover) {
+    seg.addEventListener('pointerover', e => { if (drag || e.pointerType !== 'mouse') return; const b = e.target.closest(sel); if (!b) return;
+      const wasHidden = th.style.opacity === '0'; if (wasHidden) { snap(b, true); } snap(b); mark(b); seg.classList.add('hovering'); });
+    seg.addEventListener('pointerleave', () => { if (drag) return; mark(null); seg.classList.remove('hovering'); snap(active()); });
+  }
+  return { sync: () => { if (!drag && !seg.classList.contains('hovering')) snap(active()); } };
+}
 
 /* ---------- terminal ---------- */
 const tb = $('#tbody'), tin = $('#tin'); const hist = []; let hi = 0, busy = false;
@@ -1000,9 +1218,9 @@ const CMDS = {
   <span class="p">kubectl get pods</span> · <span class="p">terraform plan</span> · <span class="p">uptime</span>
   <span class="p">contact</span> · <span class="p">cv</span> · <span class="p">ping jaimit</span> · <span class="p">clear</span> · <span class="p">sudo hire jaimit</span>
 <span class="c">tab completes · ↑ history · a few easter eggs hidden</span>`),
-  whoami: () => out(`Jaimit Patel · DevOps engineer · Ahmedabad, India (IST)
+  whoami: () => out(`Jaimit Patel · DevOps engineer → DevSecOps · Ahmedabad, India (IST)
 <span class="c">3+ years · AWS · Azure · GCP · on-prem · CKA and AWS DevOps Pro in progress</span>`),
-  skills: () => { const g = { ci: 'ci/cd', iac: 'iac', k8s: 'containers', cloud: 'cloud', data: 'network & data', obs: 'observability', code: 'scripting' };
+  skills: () => { const g = { ci: 'ci/cd', sec: 'security', k8s: 'containers', cloud: 'cloud & infra', iac: 'iac', obs: 'observability', data: 'databases', code: 'languages' };
     out(Object.entries(g).map(([k, v]) => `<span class="p">${v.padEnd(15)}</span>${T.filter(t => t[2] === k).map(t => t[0]).join(', ')}`).join('\n')); },
   experience: () => { out(`<span class="y">a3f9c21</span> (HEAD) DevOps Engineer · Inexture Solutions · Sep 2026 → now
 <span class="y">7be41d0</span> DevOps Engineer · NetAI Inc · Jun 2024 → Aug 2026
@@ -1019,8 +1237,8 @@ linkedin  <a href="https://linkedin.com/in/jaimit2002" target="_blank" rel="noop
 working on   on-prem platform at Inexture Solutions
 building     <a href="https://github.com/Jaimtlearn/KeyStone" target="_blank" rel="noopener">keystone</a> (rust · tauri)
 studying     CKA · AWS DevOps Engineer Pro
-looking for  DevOps · Platform · SRE roles`),
-  vision: () => out(`<span class="p">north star</span> platforms developers never have to think about.
+looking for  DevSecOps · DevOps roles`),
+  vision: () => out(`<span class="p">north star</span> secure platforms developers never have to think about.
 <span class="c">› scrolling to direction…</span>`) || setTimeout(() => go('vision'), 700),
   uptime: () => out(`up 1,096 days · load average: low · SLO <span class="ok">99.9% met</span>`),
   clear: () => { tb.innerHTML = ''; },
@@ -1183,8 +1401,11 @@ $$('.proj').forEach(p => {
   const draw = () => { const pts = data.map((v, i) => `${i / (data.length - 1) * 400},${245 - (v - 20) * 2.1}`); line.setAttribute('d', 'M' + pts.join(' L')); area.setAttribute('d', 'M0,250 L' + pts.join(' L') + ' L400,250Z'); };
   draw(); if (!RM) setInterval(() => { const last = data[data.length - 1]; let v = last + (Math.random() - .5) * 8; if (Math.random() < .06) v += 22; v = Math.max(28, Math.min(80, v * .9 + 44 * .1)); data.shift(); data.push(v); draw(); val.textContent = Math.round(v) + ' ms'; }, 450); })();
 
+glassSeg($('.build'), 'button'); glassSeg($('#tabs'), '.tab');
+window.navGlass = glassSeg($('.nav .links'), 'a.l', { hover: true, allowNone: true, onOver: a => { const t = document.querySelector(a.getAttribute('href')); t && t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); } });
+
 /* ---------- tmux status bar ---------- */
-const SECS = [['top', 'hero.tsx'], ['about', 'about.md'], ['pipeline', 'ci.yml'], ['infra', 'platform.tf'], ['skills', 'stack.json'], ['impact', 'metrics.prom'], ['experience', 'career.log'], ['projects', 'projects/'], ['vision', 'roadmap.yaml'], ['contact', 'contact.sh']];
+const SECS = [['top', 'hero.tsx'], ['about', 'about.md'], ['pipeline', 'ci.yml'], ['infra', 'platform.tf'], ['skills', 'skills.json'], ['impact', 'metrics.prom'], ['experience', 'career.log'], ['projects', 'projects/'], ['vision', 'roadmap.yaml'], ['contact', 'contact.sh']];
 const secEls = SECS.map(([id]) => id === 'top' ? $('.hero') : document.getElementById(id));
 const curSec = () => { let c = 0; secEls.forEach((el, i) => { if (el.getBoundingClientRect().top < innerHeight * .4) c = i; }); return c; };
 addEventListener('scroll', () => { const max = document.documentElement.scrollHeight - innerHeight, k = scrollY / max;
